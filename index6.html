@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MM Clothing – 2026 Catalogue</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:#f2f0eb;color:#111;}
+
+/* Embroidery Section */
+.emb-section{background:#f2f0eb;padding:32px 24px;text-align:center;}
+.emb-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,2.4rem);letter-spacing:.05em;margin-bottom:6px;color:#111;}
+.emb-subheading{font-size:.95rem;color:#666;letter-spacing:.08em;margin-bottom:36px;font-weight:400;}
+
+.carousel-wrapper{position:relative;max-width:900px;margin:0 auto;overflow:hidden;border-radius:18px;}
+.carousel-container{display:flex;position:relative;width:100%;aspect-ratio:16/9;background:#111;}
+.carousel-slide{position:absolute;width:100%;height:100%;opacity:0;transition:opacity .6s ease-in-out;display:flex;align-items:center;justify-content:center;}
+.carousel-slide.active{opacity:1;}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.carousel-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(17,17,17,.7) 0%,rgba(232,55,13,.4) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px 24px;}
+.carousel-text h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,4vw,2rem);color:#fff;letter-spacing:.05em;margin-bottom:8px;}
+.carousel-text p{font-size:.9rem;color:rgba(255,255,255,.9);line-height:1.5;margin-bottom:18px;max-width:500px;}
+.carousel-btn{background:#25d366;color:#111;border:none;padding:11px 26px;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:background .3s;text-decoration:none;display:inline-block;}
+.carousel-btn:hover{background:#1eba55;color:#fff;}
+
+.carousel-controls{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:100;}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:all .3s;border:none;}
+.carousel-dot.active{background:#25d366;width:28px;border-radius:5px;}
+
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(232,55,13,.7);color:#fff;border:none;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .3s;z-index:100;}
+.carousel-nav:hover{background:rgba(232,55,13,1);}
+.carousel-nav.prev{left:12px;}
+.carousel-nav.next{right:12px;}
+
+@media(max-width:768px){
+  .carousel-container{aspect-ratio:4/5;}
+  .carousel-overlay{padding:20px 18px;}
+  .carousel-text h3{font-size:clamp(1.1rem,3.5vw,1.6rem);}
+  .carousel-text p{font-size:.82rem;margin-bottom:14px;}
+  .carousel-nav{width:40px;height:40px;font-size:1.1rem;}
+}
+
+@media(max-width:480px){
+  .emb-section{padding:24px 16px;}
+  .carousel-container{aspect-ratio:1/1.2;}
+  .carousel-overlay{padding:16px 14px;}
+  .carousel-text h3{font-size:clamp(.9rem,3vw,1.3rem);}
+  .carousel-text p{font-size:.75rem;margin-bottom:12px;}
+  .carousel-btn{padding:9px 18px;font-size:.7rem;}
+  .carousel-nav{display:none;}
+  .carousel-controls{bottom:12px;gap:6px;}
+  .carousel-dot{width:8px;height:8px;}
+  .carousel-dot.active{width:24px;}
+}
+
+nav{background:#111;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;position:sticky;top:0;z-index:200;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo img{height:46px;width:auto;filter:invert(1);display:block;}
+.logo-text{display:flex;flex-direction:column;line-height:1.1;}
+.logo-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#fff;letter-spacing:.1em;}
+.logo-tag{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:#e8370d;font-weight:700;}
+.nr{display:flex;gap:8px;}
+.bq{background:#e8370d;color:#fff;border:none;padding:9px 18px;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
+.bq:hover{background:#c72d07;}
+.bw{background:#25d366;color:#fff;border:none;padding:9px 18px;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:5px;}
+.bw:hover{background:#1eba55;}
+
+.hero{background:#111;color:#fff;text-align:center;padding:70px 24px 56px;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,11vw,9rem);line-height:.9;letter-spacing:.04em;}
+.hero h1 em{color:#e8370d;font-style:normal;}
+.hero p{margin:18px auto 0;max-width:400px;color:rgba(255,255,255,.5);line-height:1.7;}
+.hb{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.bp{background:#e8370d;color:#fff;border:none;padding:13px 28px;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
+.bp:hover{background:#c72d07;}
+.bwh{background:#25d366;color:#fff;border:none;padding:13px 28px;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
+.bwh:hover{background:#1eba55;}
+
+.tb{background:#fff;border-bottom:2px solid #e0ddd6;position:sticky;top:67px;z-index:190;overflow-x:auto;white-space:nowrap;}
+.tb button{background:none;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;padding:13px 18px;font-family:'DM Sans',sans-serif;font-size:.77rem;letter-spacing:.1em;text-transform:uppercase;color:#111;cursor:pointer;}
+.tb button.active,.tb button:hover{color:#e8370d;border-bottom-color:#e8370d;}
+
+.gs{padding:26px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
+.card[hidden]{display:none;}
+.card{background:#fff;overflow:hidden;}
+
+.iw{position:relative;overflow:hidden;}
+.iw img{width:100%;display:block;transition:transform .4s;}
+.card:hover .iw img{transform:scale(1.04);}
+.ov{position:absolute;inset:0;background:rgba(0,0,0,.48);display:flex;align-items:flex-end;padding:16px;opacity:0;transition:opacity .25s;}
+.card:hover .ov{opacity:1;}
+.ov button{width:100%;background:#e8370d;color:#fff;border:none;padding:12px;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
+.ov button:hover{background:#c72d07;}
+.ci{padding:12px 15px 16px;}
+.ci span{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#e8370d;}
+.ci h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.05em;margin-top:3px;}
+
+.cta{background:#e8370d;color:#fff;text-align:center;padding:54px 24px;}
+.cta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,4rem);letter-spacing:.05em;margin-bottom:12px;}
+.cta p{font-size:.93rem;opacity:.85;max-width:380px;margin:0 auto 26px;line-height:1.7;}
+.bcta{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#25d366;border:none;padding:14px 30px;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
+.bcta:hover{background:#f0f0f0;}
+
+.om{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center;padding:20px;}
+.om.open{display:flex;}
+.modal{background:#fff;width:100%;max-width:430px;padding:34px 28px;position:relative;}
+.mx{position:absolute;top:12px;right:14px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#aaa;line-height:1;}
+.mx:hover{color:#111;}
+.modal h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.06em;margin-bottom:4px;}
+.modal>p{font-size:.82rem;color:#888;margin-bottom:20px;}
+.f{margin-bottom:13px;}
+.f label{display:block;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:#999;margin-bottom:5px;}
+.f input,.f select,.f textarea{width:100%;border:1.5px solid #ddd;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:#e8370d;}
+.f textarea{resize:vertical;min-height:65px;}
+.sb{width:100%;background:#25d366;color:#fff;border:none;padding:13px;font-weight:700;font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.sb:hover{background:#1eba55;}
+
+.waf{position:fixed;bottom:26px;right:26px;z-index:998;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.3);transition:transform .3s;text-decoration:none;}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:27px;height:27px;}
+.pulse{position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,.5);animation:pulse 2s ease-out infinite;}
+@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.tip{position:absolute;right:64px;background:#111;color:#fff;padding:6px 11px;font-size:.72rem;font-weight:600;white-space:nowrap;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .2s;}
+.waf:hover .tip{opacity:1;}
+
+footer{background:#111;color:rgba(255,255,255,.3);text-align:center;padding:22px;font-size:.75rem;}
+@media(max-width:560px){nav{padding:10px 14px;}.logo img{height:36px;}.hero{padding:52px 16px 44px;}.gs{padding:14px;}.grid{gap:10px;}.nr{gap:6px;}.bq,.bw{padding:8px 12px;font-size:.7rem;}.tb{top:57px;}}
+</style>
+</head>
+<body>
+
+<!-- Embroidery Promotion Section -->
+<div class="emb-section">
+  <h2 class="emb-heading">🧵 We Also Do Professional Embroidery</h2>
+  <p class="emb-subheading">Corporate Branding • School Uniforms • Workwear • Promotional Clothing</p>
+  
+  <div class="carousel-wrapper">
+    <div class="carousel-container">
+      <!-- Slide 1: Golf Shirts -->
+      <div class="carousel-slide active">
+        <img src="images/embroidery/golf-shirt.webp" alt="Corporate embroidered golf shirts for businesses" loading="lazy"/>
+        <div class="carousel-overlay">
+          <div class="carousel-text">
+            <h3>Corporate Golf Shirts</h3>
+            <p>Professional embroidered golf shirts for businesses, schools and organisations.</p>
+            <a href="https://wa.me/27810606052?text=Hi+MM+Clothing,+I+want+to+request+a+quote+for+embroidery." class="carousel-btn" aria-label="Request quote for corporate golf shirts">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Slide 2: Workwear & Jackets -->
+      <div class="carousel-slide">
+        <img src="images/embroidery/jacket.webp" alt="Premium embroidered workwear and safety uniforms" loading="lazy"/>
+        <div class="carousel-overlay">
+          <div class="carousel-text">
+            <h3>Workwear & Jackets</h3>
+            <p>Premium embroidered workwear and safety uniforms.</p>
+            <a href="https://wa.me/27810606052?text=Hi+MM+Clothing,+I+want+to+request+a+quote+for+embroidery." class="carousel-btn" aria-label="Request quote for workwear and jackets">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Slide 3: Custom Caps -->
+      <div class="carousel-slide">
+        <img src="images/embroidery/caps.webp" alt="High-quality embroidered custom caps with logo" loading="lazy"/>
+        <div class="carousel-overlay">
+          <div class="carousel-text">
+            <h3>Custom Caps</h3>
+            <p>High-quality embroidered caps with your company logo.</p>
+            <a href="https://wa.me/27810606052?text=Hi+MM+Clothing,+I+want+to+request+a+quote+for+embroidery." class="carousel-btn" aria-label="Request quote for custom caps">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Slide 4: Branded Hoodies -->
+      <div class="carousel-slide">
+        <img src="images/embroidery/hoodie.webp" alt="Custom embroidered hoodies for teams and businesses" loading="lazy"/>
+        <div class="carousel-overlay">
+          <div class="carousel-text">
+            <h3>Branded Hoodies</h3>
+            <p>Custom embroidered hoodies for teams, schools and businesses.</p>
+            <a href="https://wa.me/27810606052?text=Hi+MM+Clothing,+I+want+to+request+a+quote+for+embroidery." class="carousel-btn" aria-label="Request quote for branded hoodies">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Slide 5: Promotional Bags -->
+      <div class="carousel-slide">
+        <img src="images/embroidery/bag.webp" alt="Brand your backpacks, laptop bags and promotional items" loading="lazy"/>
+        <div class="carousel-overlay">
+          <div class="carousel-text">
+            <h3>Promotional Bags</h3>
+            <p>Brand your backpacks, laptop bags and promotional items.</p>
+            <a href="https://wa.me/27810606052?text=Hi+MM+Clothing,+I+want+to+request+a+quote+for+embroidery." class="carousel-btn" aria-label="Request quote for promotional bags">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Slide 6: School & Corporate Uniforms -->
+      <div class="carousel-slide">
+        <img src="images/embroidery/uniform.webp" alt="Professional embroidery for school and corporate uniforms" loading="lazy"/>
+        <div class="carousel-overlay">
+          <div class="carousel-text">
+            <h3>School & Corporate Uniforms</h3>
+            <p>Professional embroidery with durable stitching and premium finishes.</p>
+            <a href="https://wa.me/27810606052?text=Hi+MM+Clothing,+I+want+to+request+a+quote+for+embroidery." class="carousel-btn" aria-label="Request quote for school and corporate uniforms">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Navigation Buttons -->
+      <button class="carousel-nav prev" aria-label="Previous slide" onclick="carouselPrev()">&#10094;</button>
+      <button class="carousel-nav next" aria-label="Next slide" onclick="carouselNext()">&#10095;</button>
+    </div>
+    
+    <!-- Dot Indicators -->
+    <div class="carousel-controls" role="tablist">
+      <button class="carousel-dot active" aria-label="Go to slide 1" onclick="carouselGoto(0)" role="tab" aria-selected="true"></button>
+      <button class="carousel-dot" aria-label="Go to slide 2" onclick="carouselGoto(1)" role="tab" aria-selected="false"></button>
+      <button class="carousel-dot" aria-label="Go to slide 3" onclick="carouselGoto(2)" role="tab" aria-selected="false"></button>
+      <button class="carousel-dot" aria-label="Go to slide 4" onclick="carouselGoto(3)" role="tab" aria-selected="false"></button>
+      <button class="carousel-dot" aria-label="Go to slide 5" onclick="carouselGoto(4)" role="tab" aria-selected="false"></button>
+      <button class="carousel-dot" aria-label="Go to slide 6" onclick="carouselGoto(5)" role="tab" aria-selected="false"></button>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="logo">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGQAAAOwCAYAAAB4fKJyAAEAAElEQVR42uz9d7wlRZ3/j7+qus+dISd3XV2V+DWAmaREEwq6h7quu4Z1g7o/1v2IroIKk5nEDAw5GUCMICBBQbKSGWAYgqCCZBQQGECYGWbuvaerfn90[...]
+    <span class="logo-tag">Authentic Apparel</span>
+  </div>
+  <div class="nr">
+    <button class="bq" onclick="openQuote('')">Get a Quote</button>
+    <a class="bw" href="https://wa.me/27810606052?text=Hi+MM+Clothing!" target="_blank"><svg viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-[...]
+  </div>
+</nav>
+
+<div class="hero">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGQAAAOwCAYAAAB4fKJyAAEAAElEQVR42uz9d7wlRZ3/j7+qus+dISd3XV2V+DWAmaREEwq6h7quu4Z1g7o/1v2IroIKk5nEDAw5GUCMICBBQbKSGWAYgqCCZBQQGECYGWbuvaerfn90OH[...]
+  <p>Premium branded apparel, golfers, hoodies, headwear &amp; kids clothing for South Africa.</p>
+  <div class="hb">
+    <button class="bp" onclick="document.getElementById('cat').scrollIntoView({behavior:'smooth'})">Browse Catalogue</button>
+    <a class="bwh" href="https://wa.me/27810606052?text=Hi+MM+Clothing,+I+want+to+enquire." target="_blank"><svg viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M17.472 14.382c-.297-.[...]
+  </div>
+</div>
+
+<div id="cat">
+  <div class="tb">
+    <button class="active" onclick="filter('All',this)">All</button>
+    <button onclick="filter('Hoodies',this)">Hoodies</button>
+    <button onclick="filter('Golfers',this)">Golfers</button>
+    <button onclick="filter('Activewear',this)">Activewear</button>
+    <button onclick="filter('Casual',this)">Casual</button>
+    <button onclick="filter('Knitwear',this)">Knitwear</button>
+    <button onclick="filter('Outerwear',this)">Outerwear</button>
+    <button onclick="filter('Headwear',this)">Headwear</button>
+    <button onclick="filter('Kids',this)">Kids</button>
+    <button onclick="filter('Gallery',this)">Gallery</button>
+  </div>
+  <div class="gs"><div class="grid">
+<div class="card" data-cat="Outerwear">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+NDI0PkxERExfWl98fKcBBgYGBgcGBwgIBwoLCgsKDw4MDA4PF[...]
+  <div class="ci"><span>Outerwear</span><h3>Arctic Body Warmer</h3></div>
+</div>
+<div class="card" data-cat="Hoodies">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+NDI0PkxERExfWl98fKcBBgYGBgcGBwgIBwoLCgsKDw4MDA4PF[...]
+  <div class="ci"><span>Hoodies</span><h3>Boston Hoodie</h3></div>
+</div>
+<div class="card" data-cat="Knitwear">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+NDI0PkxERExfWl98fKcBBgYGBgcGBwgIBwoLCgsKDw4MDA4PF[...]
+  <div class="ci"><span>Knitwear</span><h3>Crew Neck &amp; Quarter Zip Sweater</h3></div>
+</div>
+<div class="card" data-cat="Golfers">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETH[...]
+  <div class="ci"><span>Golfers</span><h3>Ottoman &amp; Long Sleeve Golfer</h3></div>
+</div>
+<div class="card" data-cat="Kids">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETH[...]
+  <div class="ci"><span>Kids</span><h3>Kids Apparel</h3></div>
+</div>
+<div class="card" data-cat="Golfers">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETH[...]
+  <div class="ci"><span>Golfers</span><h3>Mens Pinnacle Golfer</h3></div>
+</div>
+<div class="card" data-cat="Hoodies">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+NDI0PkxERExfWl98fKcBBgYGBgcGBwgIBwoLCgsKDw4MDA4PF[...]
+  <div class="ci"><span>Hoodies</span><h3>Base Hoodie Collection</h3></div>
+</div>
+<div class="card" data-cat="Golfers">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETH[...]
+  <div class="ci"><span>Golfers</span><h3>Mens &amp; Ladies Pro Golfer</h3></div>
+</div>
+<div class="card" data-cat="Activewear">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETH[...]
+  <div class="ci"><span>Activewear</span><h3>Performance Activewear Range</h3></div>
+</div>
+<div class="card" data-cat="Casual">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETH[...]
+  <div class="ci"><span>Casual</span><h3>Casual Summer Collection</h3></div>
+</div>
+<div class="card" data-cat="Headwear">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETH[...]
+  <div class="ci"><span>Headwear</span><h3>Beanies &amp; Winter Hats</h3></div>
+</div>
+<div class="card" data-cat="Gallery">
+  <div class="iw"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETH[...]
+  <div class="ci"><span>Gallery</span><h3>Lookbook 2026</h3></div>
+</div>
+  </div></div>
+</div>
+
+<div class="cta">
+  <h2>Ready To Order?</h2>
+  <p>Get in touch today for a quote, samples or to discuss your custom apparel needs.</p>
+  <a class="bcta" href="https://wa.me/27810606052?text=Hi+MM+Clothing!" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-[...]
+</div>
+
+<div class="om" id="om">
+  <div class="modal">
+    <button class="mx" onclick="closeQuote()">✕</button>
+    <h3>Get a Quote</h3>
+    <p>Tell us about your requirements and we'll get back to you shortly.</p>
+    <form>
+      <div class="f">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" placeholder="Your name" required/>
+      </div>
+      <div class="f">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="your@email.com" required/>
+      </div>
+      <div class="f">
+        <label for="phone">Phone Number</label>
+        <input id="phone" type="tel" placeholder="+27 (0)..." required/>
+      </div>
+      <div class="f">
+        <label for="product">Product Type</label>
+        <select id="product" required>
+          <option>Select a product...</option>
+          <option>Hoodies</option>
+          <option>Golfers</option>
+          <option>Activewear</option>
+          <option>Casual</option>
+          <option>Knitwear</option>
+          <option>Outerwear</option>
+          <option>Headwear</option>
+          <option>Kids</option>
+          <option>Embroidery Services</option>
+        </select>
+      </div>
+      <div class="f">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell us more about your order..." required></textarea>
+      </div>
+      <button class="sb" type="submit" onclick="sendQuote(event)"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.41,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 L4.13399899,1.16865566 C3.34915502,0.9115582 2.40734225,1.02286289 1.77946707,1.4941549 C0.994623095,2.13399899 0.837654326,3.0765834 1.15159189,3.86205746 L3.03521743,10.4421504 C3.03521743,10.5992478 3.19218622,10.7563452 3.50612381,10.7563452 L16.6915026,11.5418322 C16.6915026,11.5418322 17.1624089,11.5418322 17.1624089,12.0131243 C17.1624089,12.4744748 16.6915026,12.4744748 16.6915026,12.4744748 Z"></path></svg></button>
+    </form>
+  </div>
+</div>
+
+<a href="https://wa.me/27810606052" class="waf" aria-label="WhatsApp contact button">
+  <div class="pulse"></div>
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-[...]</svg>
+  <span class="tip">Message us!</span>
+</a>
+
+<footer>
+  © 2026 MM Clothing. All rights reserved. | Premium apparel for South Africa
+</footer>
+
+<script>
+let carouselIdx = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+const totalSlides = slides.length;
+let autoPlayTimer;
+
+function showSlide(n) {
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  dots.forEach(d => d.setAttribute('aria-selected', 'false'));
+  
+  slides[n].classList.add('active');
+  dots[n].classList.add('active');
+  dots[n].setAttribute('aria-selected', 'true');
+}
+
+function carouselNext() {
+  carouselIdx = (carouselIdx + 1) % totalSlides;
+  showSlide(carouselIdx);
+  resetAutoPlay();
+}
+
+function carouselPrev() {
+  carouselIdx = (carouselIdx - 1 + totalSlides) % totalSlides;
+  showSlide(carouselIdx);
+  resetAutoPlay();
+}
+
+function carouselGoto(n) {
+  carouselIdx = n;
+  showSlide(carouselIdx);
+  resetAutoPlay();
+}
+
+function autoPlay() {
+  carouselIdx = (carouselIdx + 1) % totalSlides;
+  showSlide(carouselIdx);
+}
+
+function resetAutoPlay() {
+  clearInterval(autoPlayTimer);
+  autoPlayTimer = setInterval(autoPlay, 3500);
+}
+
+// Swipe support
+let touchStartX = 0;
+const carousel = document.querySelector('.carousel-wrapper');
+carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+carousel.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (diff > 50) carouselNext();
+  else if (diff < -50) carouselPrev();
+});
+
+// Keyboard support
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') carouselPrev();
+  if (e.key === 'ArrowRight') carouselNext();
+});
+
+autoPlayTimer = setInterval(autoPlay, 3500);
+
+function openQuote(e) {
+  document.getElementById('om').classList.add('open');
+}
+
+function closeQuote() {
+  document.getElementById('om').classList.remove('open');
+}
+
+function sendQuote(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const msg = `Hi MM Clothing, I'm ${name} and I'd like to request a quote.`;
+  window.open(`https://wa.me/27810606052?text=${encodeURIComponent(msg)}`);
+  closeQuote();
+}
+
+function filter(cat, btn) {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(c => c.hidden = cat !== 'All' && c.dataset.cat !== cat);
+  document.querySelectorAll('.tb button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
